@@ -28,7 +28,7 @@ public class PostJpo {
      * 게시글 제목
      */
     private String title;
-
+ 
     /**
      * 게시글 내용
      */

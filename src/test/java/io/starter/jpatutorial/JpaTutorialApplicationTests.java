@@ -1,6 +1,7 @@
 package io.starter.jpatutorial;
 
 import io.starter.jpatutorial.domain.model.Post;
+import io.starter.jpatutorial.service.CommentService;
 import io.starter.jpatutorial.service.PostListService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -26,7 +27,7 @@ class JpaTutorialApplicationTests {
 
     @Test
     @DisplayName("게시글 생성 테스트")
-    void save(){
+    void save() {
         List<Post> posts = Arrays.asList(
                 Post.builder().title("게시글 1").content("게시글 1 내용").build(),
                 Post.builder().title("게시글 2").content("게시글 2 내용").build(),
@@ -35,4 +36,15 @@ class JpaTutorialApplicationTests {
         postListService.save(posts);
     }
 
+    @Autowired
+    private CommentService commentService;
+
+    @Test
+    @DisplayName("게시글 댓글 생성 테스트")
+    void saveComment() {
+        Comment comment = Comment.builder()
+                .content("게시글 1의 첫번째 댓글")
+                .build();
+        commentService.save(1, comment);
+    }
 }
